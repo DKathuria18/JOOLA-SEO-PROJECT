@@ -1,0 +1,32 @@
+// this is the character counter which we want to add in the administrator panel of JOOMLA for meta description 
+//metadescription counter
+jQuery(function($) {
+$( "textarea#jform_metadesc" ).after( "<span id=\"summarychrs\">0</span>" );
+ 
+function countChar(inobj, maxl, outobj) {
+var isTextCounter = $('#jform_metadesc');
+if (isTextCounter.length > 0) {
+    var len = inobj.value.length;
+    var msg = ' characters left';
+    if (len >= maxl) {
+        inobj.value = inobj.value.substring(0, maxl);
+        $(outobj).text(0 + msg);
+    } else {
+        $(outobj).text(maxl - len + msg);
+    }
+}
+ 
+}
+ 
+$(document).ready(function(){
+ 
+    //set up summary field character count
+    countChar($('#jform_metadesc').get(0),160, '#summarychrs'); //show inital value on page load
+    $('#jform_metadesc').keyup(function() {
+        countChar(this, 160, '#summarychrs'); //set up on keyup event function
+    });
+ 
+});
+ 
+});
+//metadescription counter
